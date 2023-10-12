@@ -2,7 +2,7 @@ const text = document.getElementById('task__input')
 const task = document.getElementById('tasks__list')
 const remove = document.querySelectorAll('.task__remove')
 
-text.addEventListener('keydown', (e) => {                           // добавление по нажатию клавиши Enter
+text.addEventListener('keydown', (e) => {                           
     if (e.key == 'Enter' && text.value.length != 0){
         task.innerHTML += 
          `<div class="task">
@@ -12,10 +12,11 @@ text.addEventListener('keydown', (e) => {                           // доба�
             <a href="#" class="task__remove">&times;</a>
           </div>`
         text.value = null
+        e.preventDefault()
     } 
 })
 
-document.addEventListener('click', delTask)                        // удаление задачи
+document.addEventListener('click', delTask)                       
 function delTask (event) {
     let tar = event.target
     if (Array.from(tar.classList).includes('task__remove')){
@@ -23,17 +24,5 @@ function delTask (event) {
     }
 }
 
-const btn = document.getElementById('tasks__add')                  // добавлене задачи по клику на кнопку "Добавить"
-btn.addEventListener('click', addTask)
-function addTask () {
-    if (text.value.length !=0){
-        task.innerHTML += 
-         `<div class="task">
-            <div class="task__title">
-              ${text.value}
-            </div>
-            <a href="#" class="task__remove">&times;</a>
-          </div>`
-        text.value = null
-    }
-}
+//1. Реализуйте добавление задач по нажатию клавиши Enter при наличии текста в поле ввода
+//2. Реализуйте механизм удаления задач
